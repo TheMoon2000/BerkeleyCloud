@@ -8,20 +8,58 @@
 
 /* Begin PBXBuildFile section */
 		CC1576C922127D6C00FE1F6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1576C822127D6C00FE1F6E /* AppDelegate.swift */; };
-		CC1576CB22127D6C00FE1F6E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1576CA22127D6C00FE1F6E /* ViewController.swift */; };
+		CC1576CB22127D6C00FE1F6E /* SetupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1576CA22127D6C00FE1F6E /* SetupController.swift */; };
 		CC1576CE22127D6C00FE1F6E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC1576CC22127D6C00FE1F6E /* Main.storyboard */; };
 		CC1576D022127D6E00FE1F6E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC1576CF22127D6E00FE1F6E /* Assets.xcassets */; };
 		CC1576D322127D6E00FE1F6E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC1576D122127D6E00FE1F6E /* LaunchScreen.storyboard */; };
+		CC1576DB22127F3D00FE1F6E /* NMSSH.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC1576DA22127F3D00FE1F6E /* NMSSH.framework */; };
+		CC1576DD22127F5700FE1F6E /* NMSSH.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CC1576DA22127F3D00FE1F6E /* NMSSH.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CC1576E02212839500FE1F6E /* MyCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1576DF2212839500FE1F6E /* MyCloud.swift */; };
+		CC1576E32212888800FE1F6E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1576E22212888800FE1F6E /* TabBarController.swift */; };
+		CC1576E622128A5F00FE1F6E /* LocalDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1576E522128A5F00FE1F6E /* LocalDirectory.swift */; };
+		CC1576E822128D4C00FE1F6E /* LocalDirectoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1576E722128D4B00FE1F6E /* LocalDirectoryVC.swift */; };
+		CC1576EA22129A9700FE1F6E /* Project setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1576E922129A9700FE1F6E /* Project setup.swift */; };
+		CC1576EE2212A65100FE1F6E /* NSString+AESCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = CC1576ED2212A65100FE1F6E /* NSString+AESCrypt.m */; };
+		CC1576F22212A6BA00FE1F6E /* NSData+AESCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = CC1576F12212A6BA00FE1F6E /* NSData+AESCrypt.m */; };
+		CC6384A322135F43002FA7E3 /* FileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6384A222135F43002FA7E3 /* FileCell.swift */; };
+		CC6384A522140166002FA7E3 /* AddContentViewControllerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6384A422140166002FA7E3 /* AddContentViewControllerTableViewController.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CC1576DE22127F5700FE1F6E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CC1576DD22127F5700FE1F6E /* NMSSH.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		CC1576C522127D6C00FE1F6E /* BerkeleyCloud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BerkeleyCloud.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC1576C822127D6C00FE1F6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CC1576CA22127D6C00FE1F6E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CC1576CA22127D6C00FE1F6E /* SetupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupController.swift; sourceTree = "<group>"; };
 		CC1576CD22127D6C00FE1F6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CC1576CF22127D6E00FE1F6E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CC1576D222127D6E00FE1F6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CC1576D422127D6E00FE1F6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CC1576DA22127F3D00FE1F6E /* NMSSH.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NMSSH.framework; sourceTree = "<group>"; };
+		CC1576DF2212839500FE1F6E /* MyCloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCloud.swift; sourceTree = "<group>"; };
+		CC1576E22212888800FE1F6E /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		CC1576E522128A5F00FE1F6E /* LocalDirectory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDirectory.swift; sourceTree = "<group>"; };
+		CC1576E722128D4B00FE1F6E /* LocalDirectoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDirectoryVC.swift; sourceTree = "<group>"; };
+		CC1576E922129A9700FE1F6E /* Project setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Project setup.swift"; sourceTree = "<group>"; };
+		CC1576EB2212A65000FE1F6E /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		CC1576EC2212A65000FE1F6E /* NSString+AESCrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+AESCrypt.h"; sourceTree = "<group>"; };
+		CC1576ED2212A65100FE1F6E /* NSString+AESCrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+AESCrypt.m"; sourceTree = "<group>"; };
+		CC1576F02212A6BA00FE1F6E /* NSData+AESCrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AESCrypt.h"; sourceTree = "<group>"; };
+		CC1576F12212A6BA00FE1F6E /* NSData+AESCrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+AESCrypt.m"; sourceTree = "<group>"; };
+		CC6384A222135F43002FA7E3 /* FileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCell.swift; sourceTree = "<group>"; };
+		CC6384A422140166002FA7E3 /* AddContentViewControllerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContentViewControllerTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC1576DB22127F3D00FE1F6E /* NMSSH.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,14 +93,51 @@
 		CC1576C722127D6C00FE1F6E /* BerkeleyCloud */ = {
 			isa = PBXGroup;
 			children = (
+				CC1576EF2212A67800FE1F6E /* Objective-C */,
+				CC1576E922129A9700FE1F6E /* Project setup.swift */,
 				CC1576C822127D6C00FE1F6E /* AppDelegate.swift */,
-				CC1576CA22127D6C00FE1F6E /* ViewController.swift */,
-				CC1576CC22127D6C00FE1F6E /* Main.storyboard */,
+				CC1576CA22127D6C00FE1F6E /* SetupController.swift */,
+				CC1576E22212888800FE1F6E /* TabBarController.swift */,
+				CC1576E12212839D00FE1F6E /* Tab Bar View Controllers */,
+				CC1576E4221289E400FE1F6E /* Unused */,
+				CC1576DA22127F3D00FE1F6E /* NMSSH.framework */,
 				CC1576CF22127D6E00FE1F6E /* Assets.xcassets */,
 				CC1576D122127D6E00FE1F6E /* LaunchScreen.storyboard */,
 				CC1576D422127D6E00FE1F6E /* Info.plist */,
 			);
 			path = BerkeleyCloud;
+			sourceTree = "<group>";
+		};
+		CC1576E12212839D00FE1F6E /* Tab Bar View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CC1576DF2212839500FE1F6E /* MyCloud.swift */,
+				CC1576E722128D4B00FE1F6E /* LocalDirectoryVC.swift */,
+				CC1576E522128A5F00FE1F6E /* LocalDirectory.swift */,
+				CC6384A422140166002FA7E3 /* AddContentViewControllerTableViewController.swift */,
+				CC6384A222135F43002FA7E3 /* FileCell.swift */,
+			);
+			path = "Tab Bar View Controllers";
+			sourceTree = "<group>";
+		};
+		CC1576E4221289E400FE1F6E /* Unused */ = {
+			isa = PBXGroup;
+			children = (
+				CC1576CC22127D6C00FE1F6E /* Main.storyboard */,
+			);
+			path = Unused;
+			sourceTree = "<group>";
+		};
+		CC1576EF2212A67800FE1F6E /* Objective-C */ = {
+			isa = PBXGroup;
+			children = (
+				CC1576F02212A6BA00FE1F6E /* NSData+AESCrypt.h */,
+				CC1576F12212A6BA00FE1F6E /* NSData+AESCrypt.m */,
+				CC1576EC2212A65000FE1F6E /* NSString+AESCrypt.h */,
+				CC1576ED2212A65100FE1F6E /* NSString+AESCrypt.m */,
+				CC1576EB2212A65000FE1F6E /* Bridging-Header.h */,
+			);
+			path = "Objective-C";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,6 +150,7 @@
 				CC1576C122127D6C00FE1F6E /* Sources */,
 				CC1576C222127D6C00FE1F6E /* Frameworks */,
 				CC1576C322127D6C00FE1F6E /* Resources */,
+				CC1576DE22127F5700FE1F6E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -96,6 +173,7 @@
 				TargetAttributes = {
 					CC1576C422127D6C00FE1F6E = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -135,7 +213,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC1576CB22127D6C00FE1F6E /* ViewController.swift in Sources */,
+				CC1576E822128D4C00FE1F6E /* LocalDirectoryVC.swift in Sources */,
+				CC1576F22212A6BA00FE1F6E /* NSData+AESCrypt.m in Sources */,
+				CC1576CB22127D6C00FE1F6E /* SetupController.swift in Sources */,
+				CC6384A322135F43002FA7E3 /* FileCell.swift in Sources */,
+				CC1576E32212888800FE1F6E /* TabBarController.swift in Sources */,
+				CC6384A522140166002FA7E3 /* AddContentViewControllerTableViewController.swift in Sources */,
+				CC1576E02212839500FE1F6E /* MyCloud.swift in Sources */,
+				CC1576EE2212A65100FE1F6E /* NSString+AESCrypt.m in Sources */,
+				CC1576EA22129A9700FE1F6E /* Project setup.swift in Sources */,
+				CC1576E622128A5F00FE1F6E /* LocalDirectory.swift in Sources */,
 				CC1576C922127D6C00FE1F6E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -282,15 +369,23 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GR353CPP2V;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/BerkeleyCloud",
+				);
 				INFOPLIST_FILE = BerkeleyCloud/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.themoon2000.BerkeleyCloud;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "BerkeleyCloud/Objective-C/Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -300,15 +395,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GR353CPP2V;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/BerkeleyCloud",
+				);
 				INFOPLIST_FILE = BerkeleyCloud/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.themoon2000.BerkeleyCloud;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "BerkeleyCloud/Objective-C/Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
