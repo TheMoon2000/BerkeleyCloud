@@ -24,3 +24,8 @@ extension String {
         return NSString(string: self).aes256Decrypt(withKey: key)
     }
 }
+
+// The three types of content items in a directory
+enum FileType: String {
+    case File = "File", Folder = "Folder", Alias = "Symbolic Link"
+}

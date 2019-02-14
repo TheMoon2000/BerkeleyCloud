@@ -1,70 +1,78 @@
 //
-//  AddContentTableViewController.swift
+//  ContentTypeTableViewController.swift
 //  BerkeleyCloud
 //
-//  Created by Jia Rui Shan on 2019/2/12.
+//  Created by Jia Rui Shan on 2019/2/13.
 //  Copyright © 2019 UC Berkeley. All rights reserved.
 //
 
 import UIKit
 
-class AddContentTableViewController: UITableViewController {
+class ContentTypeTableViewController: UITableViewController {
+    
+    var parentTable: AddContentTableViewController?
+    var selectedIndex = 0 {
+        didSet {
+            parentTable?.contentType = [.File, .Folder, .Alias][selectedIndex]
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        self.title = "New Item"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Create", style: .done, target: self, action: #selector(dismissView))
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(dismissView))
+        
+        self.title = "Content Type"
+//        navigationItem.leftBarButtonItem = navigationItem.backBarButtonItem
+        
+//        if let navi = parentTable?.navigationItem {
+//            navi.leftBarButtonItem = navi.backBarButtonItem
+//        }
+        
         self.tableView = UITableView(frame: .zero, style: .grouped)
-        self.tableView.keyboardDismissMode = .interactive
-    }
-    
-    @objc func dismissView() {
-        self.dismiss(animated: true, completion: nil)
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 2
-    }
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return ["Name", "Type"][section]
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return [1,2][section]
-    }
-    
-    override func tableView(_ tableView: UITableView, canFocusRowAt indexPath: IndexPath) -> Bool {
-        return [false, true, true][indexPath.row]
+        return 3
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        cell.textLabel?.text = "\(indexPath)"
-
+        cell.textLabel?.text = [FileType.File.rawValue,
+                                FileType.Folder.rawValue,
+                                FileType.Alias.rawValue][indexPath.row]
+        if indexPath.row == selectedIndex {
+            cell.accessoryType = .checkmark
+        }
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.cellForRow(at: indexPath)!.accessoryType = .checkmark
+        if selectedIndex != indexPath.row {
+            tableView.cellForRow(at: IndexPath(row: selectedIndex, section: 0))?.accessoryType = .none
+            selectedIndex = indexPath.row
+            parentTable?.tableView.reloadRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
+        }
+        tableView.deselectRow(at: indexPath, animated: true)
+        navigationController?.popViewController(animated: true)
+    }
 
-    
+    /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-    
+    */
 
     /*
     // Override to support editing the table view.

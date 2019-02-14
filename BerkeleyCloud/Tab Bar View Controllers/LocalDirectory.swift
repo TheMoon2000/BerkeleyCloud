@@ -89,8 +89,11 @@ class LocalDirectory: UITableViewController {
     }
     
     @objc private func addFile() {
-        let addFileView = UINavigationController(rootViewController: AddContentTableViewController())
-        self.present(addFileView, animated: true, completion: nil)
+        let addContentVC = AddContentTableViewController()
+        let addFileView = UINavigationController(rootViewController: addContentVC)
+        localDirectoryViewController?.present(addFileView, animated: true) {
+            print("completed")
+        }
     }
     
 
