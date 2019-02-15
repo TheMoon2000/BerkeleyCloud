@@ -18,11 +18,11 @@
 		CC1576E32212888800FE1F6E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1576E22212888800FE1F6E /* TabBarController.swift */; };
 		CC1576E622128A5F00FE1F6E /* LocalDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1576E522128A5F00FE1F6E /* LocalDirectory.swift */; };
 		CC1576E822128D4C00FE1F6E /* LocalDirectoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1576E722128D4B00FE1F6E /* LocalDirectoryVC.swift */; };
-		CC1576EA22129A9700FE1F6E /* Project setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1576E922129A9700FE1F6E /* Project setup.swift */; };
+		CC1576EA22129A9700FE1F6E /* Universal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1576E922129A9700FE1F6E /* Universal.swift */; };
 		CC1576EE2212A65100FE1F6E /* NSString+AESCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = CC1576ED2212A65100FE1F6E /* NSString+AESCrypt.m */; };
 		CC1576F22212A6BA00FE1F6E /* NSData+AESCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = CC1576F12212A6BA00FE1F6E /* NSData+AESCrypt.m */; };
 		CC6384A322135F43002FA7E3 /* FileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6384A222135F43002FA7E3 /* FileCell.swift */; };
-		CC6384A522140166002FA7E3 /* AddContentViewControllerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6384A422140166002FA7E3 /* AddContentViewControllerTableViewController.swift */; };
+		CC6384A522140166002FA7E3 /* AddContentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6384A422140166002FA7E3 /* AddContentTableViewController.swift */; };
 		CC6384A722147DB0002FA7E3 /* EditableTextCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6384A622147DB0002FA7E3 /* EditableTextCellTableViewCell.swift */; };
 		CC6384AA22150EF6002FA7E3 /* ContentTypeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6384A922150EF6002FA7E3 /* ContentTypeTableViewController.swift */; };
 /* End PBXBuildFile section */
@@ -54,14 +54,14 @@
 		CC1576E22212888800FE1F6E /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		CC1576E522128A5F00FE1F6E /* LocalDirectory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDirectory.swift; sourceTree = "<group>"; };
 		CC1576E722128D4B00FE1F6E /* LocalDirectoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDirectoryVC.swift; sourceTree = "<group>"; };
-		CC1576E922129A9700FE1F6E /* Project setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Project setup.swift"; sourceTree = "<group>"; };
+		CC1576E922129A9700FE1F6E /* Universal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Universal.swift; sourceTree = "<group>"; };
 		CC1576EB2212A65000FE1F6E /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		CC1576EC2212A65000FE1F6E /* NSString+AESCrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+AESCrypt.h"; sourceTree = "<group>"; };
 		CC1576ED2212A65100FE1F6E /* NSString+AESCrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+AESCrypt.m"; sourceTree = "<group>"; };
 		CC1576F02212A6BA00FE1F6E /* NSData+AESCrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AESCrypt.h"; sourceTree = "<group>"; };
 		CC1576F12212A6BA00FE1F6E /* NSData+AESCrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+AESCrypt.m"; sourceTree = "<group>"; };
 		CC6384A222135F43002FA7E3 /* FileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCell.swift; sourceTree = "<group>"; };
-		CC6384A422140166002FA7E3 /* AddContentViewControllerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContentViewControllerTableViewController.swift; sourceTree = "<group>"; };
+		CC6384A422140166002FA7E3 /* AddContentTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContentTableViewController.swift; sourceTree = "<group>"; };
 		CC6384A622147DB0002FA7E3 /* EditableTextCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableTextCellTableViewCell.swift; sourceTree = "<group>"; };
 		CC6384A922150EF6002FA7E3 /* ContentTypeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTypeTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -98,10 +98,11 @@
 			isa = PBXGroup;
 			children = (
 				CC1576EF2212A67800FE1F6E /* Objective-C */,
-				CC1576E922129A9700FE1F6E /* Project setup.swift */,
+				CC1576E922129A9700FE1F6E /* Universal.swift */,
 				CC1576C822127D6C00FE1F6E /* AppDelegate.swift */,
 				CC1576CA22127D6C00FE1F6E /* SetupController.swift */,
 				CC1576E22212888800FE1F6E /* TabBarController.swift */,
+				CC6384A822150E14002FA7E3 /* Helper Classes */,
 				CC1576E12212839D00FE1F6E /* Tab Bar View Controllers */,
 				CC1576E4221289E400FE1F6E /* Unused */,
 				CC1576DA22127F3D00FE1F6E /* NMSSH.framework */,
@@ -118,7 +119,6 @@
 				CC1576DF2212839500FE1F6E /* MyCloud.swift */,
 				CC1576E722128D4B00FE1F6E /* LocalDirectoryVC.swift */,
 				CC1576E522128A5F00FE1F6E /* LocalDirectory.swift */,
-				CC6384A822150E14002FA7E3 /* Helper Classes */,
 			);
 			path = "Tab Bar View Controllers";
 			sourceTree = "<group>";
@@ -147,7 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				CC6384A622147DB0002FA7E3 /* EditableTextCellTableViewCell.swift */,
-				CC6384A422140166002FA7E3 /* AddContentViewControllerTableViewController.swift */,
+				CC6384A422140166002FA7E3 /* AddContentTableViewController.swift */,
 				CC6384A922150EF6002FA7E3 /* ContentTypeTableViewController.swift */,
 				CC6384A222135F43002FA7E3 /* FileCell.swift */,
 			);
@@ -234,10 +234,10 @@
 				CC6384A722147DB0002FA7E3 /* EditableTextCellTableViewCell.swift in Sources */,
 				CC6384AA22150EF6002FA7E3 /* ContentTypeTableViewController.swift in Sources */,
 				CC1576E32212888800FE1F6E /* TabBarController.swift in Sources */,
-				CC6384A522140166002FA7E3 /* AddContentViewControllerTableViewController.swift in Sources */,
+				CC6384A522140166002FA7E3 /* AddContentTableViewController.swift in Sources */,
 				CC1576E02212839500FE1F6E /* MyCloud.swift in Sources */,
 				CC1576EE2212A65100FE1F6E /* NSString+AESCrypt.m in Sources */,
-				CC1576EA22129A9700FE1F6E /* Project setup.swift in Sources */,
+				CC1576EA22129A9700FE1F6E /* Universal.swift in Sources */,
 				CC1576E622128A5F00FE1F6E /* LocalDirectory.swift in Sources */,
 				CC1576C922127D6C00FE1F6E /* AppDelegate.swift in Sources */,
 			);

@@ -27,5 +27,14 @@ extension String {
 
 // The three types of content items in a directory
 enum FileType: String {
-    case File = "File", Folder = "Folder", Alias = "Symbolic Link"
+    case File = "File", Folder = "Folder", Link = "Symbolic Link", FileAlias = "File Alias"
 }
+
+let DOCUMENTS = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+
+let DIRECTORY_KEYS: [URLResourceKey] = [.isDirectoryKey,
+                                      .isAliasFileKey,
+                                      .isSymbolicLinkKey,
+                                      .pathKey,
+                                      .fileSizeKey,
+                                      .typeIdentifierKey]

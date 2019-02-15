@@ -10,8 +10,11 @@ import UIKit
 
 class LocalDirectoryViewController: UIViewController {
     
-    var tableController: UITableViewController?
+    var tableController: LocalDirectory!
     var prompt: UILabel?
+    
+    /// The local path of the directory browser.
+    var currentDirectory = "."
     
     override func viewWillAppear(_ animated: Bool) {
         self.title = "Local Directory"
@@ -19,7 +22,7 @@ class LocalDirectoryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.backgroundColor = mediumGray
         
         loadPlaceholderText() // 1. Add the text field in the background
@@ -55,8 +58,8 @@ class LocalDirectoryViewController: UIViewController {
         
         t.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(t)
-        t.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        t.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        t.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        t.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         t.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         t.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         self.tableController = tableController
@@ -64,7 +67,11 @@ class LocalDirectoryViewController: UIViewController {
     
     private func setupNavigationBar() {
         if let tc = tableController {
-            self.navigationItem.rightBarButtonItem = tc.editButtonItem
+            let editButton = UIBarButtonItem(title: "Edit",
+                                             style: .plain,
+                                             target: tc,
+                                             action: #selector(tc.editTable(_:)))
+            self.navigationItem.rightBarButtonItem = editButton
         }
     }
     

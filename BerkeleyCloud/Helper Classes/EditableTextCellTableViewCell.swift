@@ -13,6 +13,7 @@ class EditableTextCell: UITableViewCell, UITextFieldDelegate {
     var textField: UITextField = {
         let field = UITextField()
         field.placeholder = "Name"
+        field.clearButtonMode = .whileEditing
         field.returnKeyType = .done
         return field
     }()
