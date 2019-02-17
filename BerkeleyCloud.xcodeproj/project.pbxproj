@@ -17,7 +17,6 @@
 		CC1576E02212839500FE1F6E /* MyCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1576DF2212839500FE1F6E /* MyCloud.swift */; };
 		CC1576E32212888800FE1F6E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1576E22212888800FE1F6E /* TabBarController.swift */; };
 		CC1576E622128A5F00FE1F6E /* LocalDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1576E522128A5F00FE1F6E /* LocalDirectory.swift */; };
-		CC1576E822128D4C00FE1F6E /* LocalDirectoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1576E722128D4B00FE1F6E /* LocalDirectoryVC.swift */; };
 		CC1576EA22129A9700FE1F6E /* Universal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1576E922129A9700FE1F6E /* Universal.swift */; };
 		CC1576EE2212A65100FE1F6E /* NSString+AESCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = CC1576ED2212A65100FE1F6E /* NSString+AESCrypt.m */; };
 		CC1576F22212A6BA00FE1F6E /* NSData+AESCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = CC1576F12212A6BA00FE1F6E /* NSData+AESCrypt.m */; };
@@ -53,7 +52,6 @@
 		CC1576DF2212839500FE1F6E /* MyCloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCloud.swift; sourceTree = "<group>"; };
 		CC1576E22212888800FE1F6E /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		CC1576E522128A5F00FE1F6E /* LocalDirectory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDirectory.swift; sourceTree = "<group>"; };
-		CC1576E722128D4B00FE1F6E /* LocalDirectoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDirectoryVC.swift; sourceTree = "<group>"; };
 		CC1576E922129A9700FE1F6E /* Universal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Universal.swift; sourceTree = "<group>"; };
 		CC1576EB2212A65000FE1F6E /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		CC1576EC2212A65000FE1F6E /* NSString+AESCrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+AESCrypt.h"; sourceTree = "<group>"; };
@@ -117,7 +115,6 @@
 			isa = PBXGroup;
 			children = (
 				CC1576DF2212839500FE1F6E /* MyCloud.swift */,
-				CC1576E722128D4B00FE1F6E /* LocalDirectoryVC.swift */,
 				CC1576E522128A5F00FE1F6E /* LocalDirectory.swift */,
 			);
 			path = "Tab Bar View Controllers";
@@ -227,7 +224,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC1576E822128D4C00FE1F6E /* LocalDirectoryVC.swift in Sources */,
 				CC1576F22212A6BA00FE1F6E /* NSData+AESCrypt.m in Sources */,
 				CC1576CB22127D6C00FE1F6E /* SetupController.swift in Sources */,
 				CC6384A322135F43002FA7E3 /* FileCell.swift in Sources */,

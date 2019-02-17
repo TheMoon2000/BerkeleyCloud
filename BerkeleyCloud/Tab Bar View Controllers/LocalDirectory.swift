@@ -10,43 +10,92 @@ import UIKit
 
 class LocalDirectory: UITableViewController {
     
-    var localDirectoryViewController: LocalDirectoryViewController?
+    var prompt: UILabel!
+    var isRoot = false
     
     /// The current directory for the local directory view.
-    
-    var currentPath: String {
-        get {
-            return localDirectoryViewController!.currentDirectory
-        }
-        set {
-            localDirectoryViewController?.currentDirectory
-        }
-    }
+    var currentPath = "."
     
     /// Returns the root path of the current directory in the filesystem.
     var absoluteURL: URL {
         return URL(fileURLWithPath: currentPath, relativeTo: DOCUMENTS)
     }
     
+    /// Whether the table is in select / edit mode
+    var editMode = false {
+        didSet {
+            for cell in tableView.visibleCells {
+                (cell as? FileCell)?.toggleEditMode()
+            }
+            tableView.allowsMultipleSelection = editMode
+            selectedRows.removeAll()
+        }
+    }
+    
     /// Returns the content list of the current directory, nil if cannot.
     var currentContents: [URL]? {
         do {
-            return try FileManager.default.contentsOfDirectory(at: absoluteURL, includingPropertiesForKeys: DIRECTORY_KEYS, options: .skipsSubdirectoryDescendants)
+            return try FileManager.default.contentsOfDirectory(at: absoluteURL, includingPropertiesForKeys: DIRECTORY_KEYS, options: .skipsSubdirectoryDescendants).sorted(by: { (first, second) -> Bool in
+                first.lastPathComponent < second.lastPathComponent
+            })
         } catch {
             print("Unable to retrieve directory: \(absoluteURL.absoluteString)")
         }
         return nil
     }
+    
+    /// An int array containing the selected rows
+    var selectedRows = Set<Int>() {
+        didSet {
+            navigationItem.title = editMode ? "\(selectedRows.count) Item(s) Selected" : absoluteURL.lastPathComponent
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // So that unused cells don't appear out of nowhere
         tableView.tableFooterView = UIView()
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         tableView.backgroundColor = UIColor(white: 1, alpha: 0.5)
         tableView.separatorInset.left = 0
+        view.backgroundColor = mediumGray
+        
         print("Absolute URL: ", absoluteURL)
+        
+        navigationItem.title = absoluteURL.lastPathComponent
+        
+        loadPlaceholderText()
+        setupNavigationBar()
+    }
+    
+    private func loadPlaceholderText() {
+        let titleLabel = UILabel()
+        titleLabel.textColor = UIColor(white: 0, alpha: 0.9)
+        titleLabel.textAlignment = .center
+        titleLabel.center = view.center
+        titleLabel.font = UIFont.systemFont(ofSize: 20, weight: .light)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        prompt = titleLabel
+        view.addSubview(titleLabel)
+        
+        // Constraints
+        titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        titleLabel.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor).isActive = true
+        titleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
+        titleLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
+    }
+    
+    private func setupNavigationBar() {
+        let editButton = UIBarButtonItem(title: "Edit",
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(editTable(_:)))
+        self.navigationItem.rightBarButtonItem = editButton
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.barTintColor = barTint
     }
     
 
@@ -58,10 +107,11 @@ class LocalDirectory: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let files = currentContents {
-            localDirectoryViewController?.prompt?.isHidden = files.count > 0
+            self.prompt?.isHidden = files.count > 0
+            self.prompt?.text = files.count > 0 ? "" : "No files to show."
             return files.count
         } else {
-            localDirectoryViewController?.prompt?.text = "Unable to access directory"
+            self.prompt?.text = "Unable to access directory"
             return 0
         }
     }
@@ -72,9 +122,50 @@ class LocalDirectory: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let itemURL = currentContents![indexPath.row]
-        print(itemURL)
-        
-        tableView.deselectRow(at: indexPath, animated: true)
+        if editMode {
+            if selectedRows.contains(indexPath.row) {
+                tableView.deselectRow(at: indexPath, animated: true)
+            } else {
+                selectedRows.insert(indexPath.row)
+            }
+            print("new selection: \(selectedRows)")
+        } else {
+            print(itemURL) // This is the absolute url
+            let localPath = NSString(string: currentPath).appendingPathComponent(itemURL.lastPathComponent)
+            do {
+                let resourceKeys = try itemURL.resourceValues(forKeys: Set(DIRECTORY_KEYS))
+                if resourceKeys.isAliasFile! {
+                    let des = try FileManager.default.destinationOfSymbolicLink(atPath: resourceKeys.path!)
+                    let aliasFullURL = URL(fileURLWithPath: des, relativeTo: DOCUMENTS)
+                    do {
+                        try FileManager.default.contentsOfDirectory(atPath: aliasFullURL.path)
+                        pushToNewDirectory(path: des)
+                    } catch {
+                        print("Original file at \(des).")
+                    }
+                } else if resourceKeys.isDirectory! {
+                    pushToNewDirectory(path: localPath)
+                } else {
+                    // opens the file
+                    print("opens the file '\(itemURL.lastPathComponent)'")
+                }
+            } catch {
+                print("Error occurredd while processing \(localPath), needs debugging.")
+            }
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
+    
+    func pushToNewDirectory(path: String) {
+        let newDirectory = LocalDirectory()
+//        newDirectory.hidesBottomBarWhenPushed = true
+        newDirectory.currentPath = path
+        self.navigationController?.pushViewController(newDirectory, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        selectedRows.remove(indexPath.row)
+        print("remaining rows: \(selectedRows)")
     }
 
     
@@ -82,6 +173,7 @@ class LocalDirectory: UITableViewController {
         let cell = FileCell()
         cell.indentationLevel = 2
         cell.cellSetup()
+        cell.editMode = self.editMode
         cell.tableView = tableView
         cell.fileName = currentContents![indexPath.item].lastPathComponent
         
@@ -96,7 +188,7 @@ class LocalDirectory: UITableViewController {
                 do {
                     try FileManager.default.contentsOfDirectory(atPath: aliasFullURL.path)
                     cell.contentType = .Link
-                } catch let error {
+                } catch {
                     cell.contentType = .FileAlias
                 }
             } else {
@@ -124,13 +216,15 @@ class LocalDirectory: UITableViewController {
     }*/
     
     @objc func editTable(_ sender: UIBarButtonItem) {
-        if sender.title == "Edit" {
+        if !editMode {
+            editMode = true
             sender.title = "Done"
             let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addFile))
-            localDirectoryViewController?.navigationItem.setLeftBarButton(addButton, animated: true)
+            self.navigationItem.setLeftBarButton(addButton, animated: true)
         } else {
+            editMode = false
             sender.title = "Edit"
-            localDirectoryViewController?.navigationItem.leftBarButtonItem = nil
+            self.navigationItem.leftBarButtonItem = nil
         }
     }
     
@@ -141,28 +235,63 @@ class LocalDirectory: UITableViewController {
         addContentVC.localDirectoryController = self
         addContentVC.currentDirectory = currentPath
         let addFileView = UINavigationController(rootViewController: addContentVC)
-        localDirectoryViewController?.present(addFileView, animated: true) {
+        self.present(addFileView, animated: true) {
             print("completed")
         }
     }
     
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+  
+        let cell = tableView.cellForRow(at: indexPath) as! FileCell
+        
+        let delete = UIContextualAction(style: .destructive, title: "Delete") { (action, sourceView, handler) in
+            let alert = UIAlertController(title: "Delete '\(cell.fileName)'?", message: "This action cannot be undone.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
+                do {
+                    let absolutePathOfFile = self.absoluteURL.appendingPathComponent(cell.fileName)
+                    try FileManager.default.removeItem(at: absolutePathOfFile)
+                    handler(true)
+                    tableView.deleteRows(at: [tableView.indexPath(for: cell)!], with: .automatic)
+                    print("Deleted file at \(absolutePathOfFile.path)")
+                } catch let error {
+                    print("unable to remove file")
+                    print(error)
+                }
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: {
+                (action) in
+                handler(false)
+            }))
+            self.present(alert, animated: true, completion: nil)
+        }
 
+        let more = UIContextualAction(style: .normal, title: "More") { (action, sourceView, handler) in
+                let alert = UIAlertController(title: "Select File Operation", message: "What would you like to do with this item?", preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
+                handler(true)
+            }))
+                self.present(alert, animated: true, completion: {})
+        }
+        more.backgroundColor = moreOptions
+
+        let act = UISwipeActionsConfiguration(actions: [delete, more])
+        act.performsFirstActionWithFullSwipe = false
+    
+        return act
+    }
+    
+    /*
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let delete = UITableViewRowAction(style: .destructive, title: "Delete") {
-            (action, index) in
-            let cell = tableView.cellForRow(at: index) as! FileCell
-            do {
-                let absolutePathOfFile = self.absoluteURL.appendingPathComponent(cell.fileName)
-                try FileManager.default.removeItem(at: absolutePathOfFile)
-                print("Deleted file at \(absolutePathOfFile.path)")
-            } catch let error {
-                print("unable to remove file")
-                print(error)
-            }
-            tableView.deleteRows(at: [index], with: .fade)
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+            tableView.deleteRows(at: [indexPath], with: .automatic)
         }
         return [delete]
-    }
+    }*/
+
+    
+//    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+//        return nil
+//    }
 
     /*
     // Override to support conditional editing of the table view.

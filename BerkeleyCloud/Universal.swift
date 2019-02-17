@@ -11,6 +11,9 @@ import UIKit
 let mediumGray = UIColor(red: 141/255, green: 148/255, blue: 171/255, alpha: 1)
 let darkGray = UIColor(red: 99/255, green: 107/255, blue: 130/255, alpha: 1)
 let buttonBorder = UIColor(red: 160/255, green: 170/255, blue: 200/255, alpha: 1)
+let moreOptions = UIColor(red: 250/255, green: 160/255, blue: 30/255, alpha: 1)
+let barTint = UIColor(red: 228/255, green: 232/255, blue: 237/255, alpha: 0.99)
+let selectionBubbleColor = UIColor(red: 134/255, green: 180/255, blue: 252/255, alpha: 1)
 let passphrase = "Berkeley Cloud" // Secret!
 
 

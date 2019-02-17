@@ -22,8 +22,8 @@ class TabBarController: UITabBarController {
     
     /** Attempts to connect to the server. If user credentials are not specified, request them by bringing up the set up view. */
     func checkIsUserRegistered() {
-        print("decrypted: " + "123".decrypted(key: "test"))
-        print("encrypted: " + "123".encrypted(key: "test"))
+        // print("decrypted: " + "123".decrypted(key: "test"))
+        // print("encrypted: " + "123".encrypted(key: "test"))
         let d = UserDefaults.standard
         if let username = d.string(forKey: "Username") {
             let password = d.string(forKey: "Password")?.decrypted(key: passphrase) ?? ""
@@ -34,7 +34,8 @@ class TabBarController: UITabBarController {
     func initializeTabs() {
         let myCloud = MyCloudViewController()
         myCloud.tabBarItem = UITabBarItem(title: "My Cloud", image:#imageLiteral(resourceName: "cloud_solid"), tag: 0)
-        let localDir = LocalDirectoryViewController()
+        let localDir = LocalDirectory()
+        localDir.isRoot = true
         localDir.tabBarItem = UITabBarItem(title: "Local Directory", image:#imageLiteral(resourceName: "local"), tag: 1)
         viewControllers = [myCloud, localDir].map({ (vc) -> UINavigationController in
             let nav = UINavigationController(rootViewController: vc)

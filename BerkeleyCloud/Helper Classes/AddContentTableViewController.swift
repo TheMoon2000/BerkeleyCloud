@@ -32,7 +32,9 @@ class AddContentTableViewController: UITableViewController, UITextFieldDelegate 
     }
     
     @objc func dismissView() {
-        localDirectoryController.tableView.reloadData()
+        if let visible = localDirectoryController.tableView.indexPathsForVisibleRows {
+            localDirectoryController.tableView.reloadRows(at: visible, with: .automatic)
+        }
         self.dismiss(animated: true, completion: nil)
     }
     

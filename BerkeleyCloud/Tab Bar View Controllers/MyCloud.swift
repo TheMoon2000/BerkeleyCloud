@@ -33,7 +33,7 @@ class MyCloudViewController: UIViewController {
         self.titleLabel = titleLabel
         
         titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        titleLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -25).isActive = true
+        titleLabel.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor, constant: -25).isActive = true
         titleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
         titleLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
     }
