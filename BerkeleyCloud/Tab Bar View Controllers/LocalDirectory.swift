@@ -266,11 +266,15 @@ class LocalDirectory: UITableViewController {
         }
 
         let more = UIContextualAction(style: .normal, title: "More") { (action, sourceView, handler) in
-                let alert = UIAlertController(title: "Select File Operation", message: "What would you like to do with this item?", preferredStyle: .actionSheet)
+            let alert = UIAlertController(title: "Select File Operation", message: "What would you like to do with this item?", preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "Rename", style: .default, handler: { (action) in
+                // renames file
+                handler(true)
+            }))
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
                 handler(true)
             }))
-                self.present(alert, animated: true, completion: {})
+            self.present(alert, animated: true, completion: {})
         }
         more.backgroundColor = moreOptions
 
@@ -280,14 +284,6 @@ class LocalDirectory: UITableViewController {
         return act
     }
     
-    /*
-    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-        }
-        return [delete]
-    }*/
-
     
 //    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 //        return nil
